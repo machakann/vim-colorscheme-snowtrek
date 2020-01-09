@@ -1,7 +1,7 @@
 # snowtrek.vim
 
-A colorscheme for vim text editor.
+A light colorscheme for vim text editor.
 
 ## Screen shot
 
-![snowtrek](https://imgur.com/zKm23dp.png)
+![snowtrek](https://imgur.com/BSXtwyT.png)

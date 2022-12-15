@@ -3,6 +3,9 @@
 " Maintainer: machakann
 "------------------------------------------------------------
 
+let s:FALSE = 0
+let s:TRUE = 1
+
 function! s:light() abort
   " Palette
   let white        = {'gui': '#fbfbfc', 'cterm': '231'}
@@ -30,97 +33,93 @@ function! s:light() abort
   let sandwichadd    = {'gui': '#cff7cf', 'cterm': '194'}
   let sandwichdelete = {'gui': '#fbd5d5', 'cterm': '230'}
   let sandwichchange = {'gui': '#f5f5c9', 'cterm': '225'}
-
-  let none         = {'gui': 'NONE',      'cterm': 'NONE'}
-  let bold         = {'gui': 'bold',      'cterm': 'bold'}
-  let underline    = {'gui': 'underline', 'cterm': 'underline'}
-  let undercurl    = {'gui': 'undercurl', 'cterm': 'undercurl'}
-  let boldunder    = {'gui': 'bold,underline', 'cterm': 'bold,underline'}
+  let lspreference = {'gui': '#e2e5f9', 'cterm': '255'}
 
   let colorscheme = {}
 
   "*** highlight groups (:h highlight-groups) ***"
   " fundamental
-  let colorscheme.Normal       = [gray1,      white,       none,      none]
-  let colorscheme.Visual       = [none,       lightbrown,  none,      none]
-  let colorscheme.VisualNOS    = [none,       lightbrown,  none,      none]
+  let colorscheme.Normal       = {'fg': gray1, 'bg': white}
+  let colorscheme.Visual       = {'bg': lightbrown}
+  let colorscheme.VisualNOS    = {'bg': lightbrown}
   " Cursor
-  let colorscheme.Cursor       = [white,      gray1,       none,      none]
-  let colorscheme.CursorIM     = [white,      orange,      none,      none]
-  let colorscheme.CursorLine   = [none,       cursorline,  none,      none]
+  let colorscheme.Cursor       = {'fg': white, 'bg': gray1}
+  let colorscheme.CursorIM     = {'fg': white, 'bg': orange}
+  let colorscheme.CursorLine   = {'bg': cursorline}
   let colorscheme.CursorColumn = colorscheme.CursorLine
   " Statusline
-  let colorscheme.StatusLine   = [gray1,      statusline,  none,      none]
-  let colorscheme.StatusLineNC = [gray2,      statusline,  none,      none]
-  let colorscheme.WildMenu     = [gray1,      lightblue,   none,      none]
+  let colorscheme.StatusLine   = {'fg': gray1, 'bg': statusline}
+  let colorscheme.StatusLineNC = {'fg': gray2, 'bg': statusline}
+  let colorscheme.WildMenu     = {'fg': gray1, 'bg': lightblue}
   let colorscheme.StatusLineTerm = colorscheme.StatusLine
   let colorscheme.StatusLineTermNC = colorscheme.StatusLineNC
   " Sidebar
-  let colorscheme.LineNr       = [gray2,      gray4,       none,      none]
-  let colorscheme.CursorLineNr = [gray1,      gray4,       none,      none]
-  let colorscheme.FoldColumn   = [gray2,      gray3,       none,      none]
-  let colorscheme.SignColumn   = [gray2,      gray4,       none,      none]
+  let colorscheme.LineNr       = {'fg': gray2, 'bg': gray4}
+  let colorscheme.CursorLineNr = {'fg': gray1, 'bg': gray4}
+  let colorscheme.FoldColumn   = {'fg': gray2, 'bg': gray3}
+  let colorscheme.SignColumn   = {'fg': gray2, 'bg': gray4}
   let colorscheme.VertSplit    = colorscheme.StatusLineNC
-  let colorscheme.ColorColumn  = [none,       gray4,       none,      none]
+  let colorscheme.ColorColumn  = {'bg': gray4}
   " Fold
-  let colorscheme.Folded       = [gray2,      gray3,       none,      none]
+  let colorscheme.Folded       = {'fg': gray2, 'bg': gray3}
   " Tabline
   let colorscheme.TabLineSel   = colorscheme.WildMenu
   let colorscheme.TabLine      = colorscheme.StatusLine
   let colorscheme.TabLineFill  = colorscheme.StatusLine
   " Search
-  let colorscheme.Search       = [none,       lightcyan,   none,      none]
-  let colorscheme.IncSearch    = [none,       lightorange, none,      none]
+  let colorscheme.Search       = {'bg': lightcyan}
+  let colorscheme.IncSearch    = {'bg': lightorange}
   " Message
-  let colorscheme.ErrorMsg     = [red,        none,        none,      none]
-  let colorscheme.ModeMsg      = [gray2,      none,        bold,      none]
-  let colorscheme.MoreMsg      = [blue,       none,        bold,      none]
-  let colorscheme.Question     = [blue,       none,        bold,      none]
-  let colorscheme.Title        = [green,      none,        none,      none]
-  let colorscheme.WarningMsg   = [yellow,     none,        none,      none]
+  let colorscheme.ErrorMsg     = {'fg': red}
+  let colorscheme.ModeMsg      = {'fg': gray2, 'bold': s:TRUE}
+  let colorscheme.MoreMsg      = {'fg': blue, 'bold': s:TRUE}
+  let colorscheme.Question     = {'fg': blue, 'bold': s:TRUE}
+  let colorscheme.Title        = {'fg': green}
+  let colorscheme.WarningMsg   = {'fg': yellow}
   " Completion
-  let colorscheme.Pmenu        = [gray2,      gray4,       none,      none]
-  let colorscheme.PmenuSel     = [gray1,      lightblue,   none,      none]
-  let colorscheme.PmenuSbar    = [gray2,      gray4,       none,      none]
-  let colorscheme.PmenuThumb   = [gray1,      lightblue,   none,      none]
+  let colorscheme.Pmenu        = {'fg': gray2, 'bg': gray4}
+  let colorscheme.PmenuSel     = {'fg': gray1, 'bg': lightblue}
+  let colorscheme.PmenuSbar    = {'fg': gray2, 'bg': gray4}
+  let colorscheme.PmenuThumb   = {'fg': gray1, 'bg': lightblue}
   " Diff
-  let colorscheme.DiffAdd      = [none,       diffaddbg,    none,      none]
-  let colorscheme.DiffChange   = [none,       diffchangebg, none,      none]
-  let colorscheme.DiffDelete   = [red,        diffdeletebg, none,      none]
-  let colorscheme.DiffText     = [none,       diffchangebg, undercurl, yellow]
+  let colorscheme.DiffAdd      = {'bg': diffaddbg}
+  let colorscheme.DiffChange   = {'bg': diffchangebg}
+  let colorscheme.DiffDelete   = {'fg': red, 'bg': diffdeletebg}
+  let colorscheme.DiffText     = {'bg': diffchangebg, 'undercurl': s:TRUE, 'sp': yellow}
   " Miscellaneous
-  let colorscheme.Directory    = [blue,       none,        none,      none]
-  let colorscheme.NonText      = [lightbrown, none,        none,      none]
-  let colorscheme.SpecialKey   = [cyan,       none,        none,      none]
-  let colorscheme.Conceal      = [lightbrown, none,        none,      none]
+  let colorscheme.Directory    = {'fg': blue}
+  let colorscheme.NonText      = {'fg': lightbrown}
+  let colorscheme.SpecialKey   = {'fg': cyan}
+  let colorscheme.Conceal      = {'fg': lightbrown}
 
   "*** Syntax groups (:h group-name) ***"
-  let colorscheme.Comment      = [brown,      none,        none,      none]
-  let colorscheme.Constant     = [gray2,      none,        none,      none]
-  let colorscheme.Identifier   = [lightgreen, none,        none,      none]
-  let colorscheme.Statement    = [green,      none,        none,      none]
-  let colorscheme.PreProc      = [yellow,     none,        none,      none]
-  let colorscheme.Type         = [blue,       none,        none,      none]
-  let colorscheme.Special      = [cyan,       none,        none,      none]
-  let colorscheme.Underlined   = [lightgreen, none,        underline, none]
-  let colorscheme.Ignore       = [lightbrown, none,        none,      none]
-  let colorscheme.Error        = [red,        none,        undercurl, red]
-  let colorscheme.Todo         = [orange,     none,        none,      none]
+  let colorscheme.Comment      = {'fg': brown}
+  let colorscheme.Constant     = {'fg': gray2}
+  let colorscheme.Identifier   = {'fg': lightgreen}
+  let colorscheme.Statement    = {'fg': green}
+  let colorscheme.PreProc      = {'fg': yellow}
+  let colorscheme.Type         = {'fg': blue}
+  let colorscheme.Special      = {'fg': cyan}
+  let colorscheme.Underlined   = {'fg': lightgreen, 'underline': s:TRUE}
+  let colorscheme.Ignore       = {'fg': lightbrown}
+  let colorscheme.Error        = {'fg': red, 'undercurl': s:TRUE, 'sp': red}
+  let colorscheme.Todo         = {'fg': orange}
 
   "*** Settings for plugin ***"
-  let colorscheme.MatchParen = [none, none, boldunder, none]
+  let colorscheme.MatchParen = {'bold': s:TRUE, 'underline': s:TRUE}
   let colorscheme.HighlightedyankRegion = colorscheme.IncSearch
-  let colorscheme.SwapCurrentItem  = [blue, lightorange, underline, none]
-  let colorscheme.SwapSelectedItem = [blue, lightcyan,   underline, none]
-  let colorscheme.SwapItem         = [blue, none,        underline, none]
-  let colorscheme.OperatorSandwichChange = [none, sandwichchange, none, none]
-  let colorscheme.OperatorSandwichDelete = [none, sandwichdelete, none, none]
-  let colorscheme.OperatorSandwichAdd    = [none, sandwichadd,    none, none]
-  let colorscheme.uniteStatusHead             = [lightgreen, statusline, none, none]
-  let colorscheme.uniteStatusSourceNames      = [blue,       statusline, none, none]
-  let colorscheme.uniteStatusSourceCandidates = [cyan,       statusline, none, none]
-  let colorscheme.uniteStatusMessage          = [gray1,      statusline, none, none]
-  let colorscheme.uniteStatusLineNR           = [green,      statusline, none, none]
+  let colorscheme.SwapCurrentItem  = {'fg': blue, 'bg': lightorange, 'underline': s:TRUE}
+  let colorscheme.SwapSelectedItem = {'fg': blue, 'bg': lightcyan, 'underline': s:TRUE}
+  let colorscheme.SwapItem         = {'fg': blue, 'underline': s:TRUE}
+  let colorscheme.OperatorSandwichChange = {'bg': sandwichchange}
+  let colorscheme.OperatorSandwichDelete = {'bg': sandwichdelete}
+  let colorscheme.OperatorSandwichAdd    = {'bg': sandwichadd}
+  let colorscheme.uniteStatusHead             = {'fg': lightgreen, 'bg': statusline}
+  let colorscheme.uniteStatusSourceNames      = {'fg': blue, 'bg': statusline}
+  let colorscheme.uniteStatusSourceCandidates = {'fg': cyan, 'bg': statusline}
+  let colorscheme.uniteStatusMessage          = {'fg': gray1, 'bg': statusline}
+  let colorscheme.uniteStatusLineNR           = {'fg': green, 'bg': statusline}
+  let colorscheme.LspReference = {'bg': lspreference}
 
   "*** Language specific tweaks ***"
   let colorscheme.helpVim = colorscheme.Statement
@@ -141,6 +140,42 @@ function! s:light() abort
 endfunction
 
 
+function! s:hi_command(group, colors) abort
+  let cmd = 'highlight ' . a:group
+  if has_key(a:colors, 'fg')
+    let cmd .= printf(' guifg=%s ctermfg=%s', a:colors.fg.gui, a:colors.fg.cterm)
+  endif
+  if has_key(a:colors, 'bg')
+    let cmd .= printf(' guibg=%s ctermbg=%s', a:colors.bg.gui, a:colors.bg.cterm)
+  endif
+  if has_key(a:colors, 'sp')
+    let cmd .= printf(' guisp=%s', a:colors.sp.gui)
+  endif
+
+  let attrib_gui = []
+  let attrib_cterm = []
+  if get(a:colors, 'bold', s:FALSE)
+    call add(attrib_gui, 'bold')
+    call add(attrib_cterm, 'bold')
+  endif
+  if get(a:colors, 'underline', s:FALSE)
+    call add(attrib_gui, 'underline')
+    call add(attrib_cterm, 'underline')
+  endif
+  if get(a:colors, 'undercurl', s:FALSE)
+    call add(attrib_gui, 'undercurl')
+    call add(attrib_cterm, 'underline')
+  endif
+  if attrib_gui != []
+    let cmd .= ' gui=' . join(attrib_gui, ',')
+  endif
+  if attrib_cterm != []
+    let cmd .= ' cterm=' . join(attrib_cterm, ',')
+  endif
+  return cmd
+endfunction
+
+
 function! s:set(colorscheme, terminal_ansi_colors) abort
   highlight clear
   if exists('syntax_on')
@@ -150,9 +185,7 @@ function! s:set(colorscheme, terminal_ansi_colors) abort
 
   set background=light
   for [group, colors] in items(a:colorscheme)
-    execute printf('highlight %s guifg=%s guibg=%s gui=%s guisp=%s ctermfg=%s ctermbg=%s cterm=%s',
-                \  group, colors[0]['gui'], colors[1]['gui'], colors[2]['gui'], colors[3]['gui'],
-                \  colors[0]['cterm'], colors[1]['cterm'], colors[2]['cterm'])
+    let cmd = s:hi_command(group, colors)
   endfor
 
   let g:terminal_ansi_colors = a:terminal_ansi_colors
@@ -171,10 +204,7 @@ call s:set(s:colorscheme, s:terminal_ansi_colors)
 function! s:print_colorscheme(colorscheme) abort
   let lines = []
   for [group, colors] in sort(items(a:colorscheme))
-    let line = printf('highlight %s guifg=%s guibg=%s gui=%s guisp=%s ctermfg=%s ctermbg=%s cterm=%s',
-    \ group,
-    \ colors[0].gui, colors[1].gui, colors[2].gui, colors[3].gui,
-    \ colors[0].cterm, colors[1].cterm, colors[2].cterm)
+    let line = s:hi_command(group, colors)
     call add(lines, line)
   endfor
   return lines

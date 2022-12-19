@@ -141,6 +141,44 @@ function! s:light() abort
 endfunction
 
 
+function! s:hi_command(group, colors) abort
+  let fg = get(a:colors, 'fg', {'gui': 'NONE', 'cterm': 'NONE'})
+  let bg = get(a:colors, 'bg', {'gui': 'NONE', 'cterm': 'NONE'})
+  let attrib_gui = []
+  let attrib_cterm = []
+  if get(a:colors, 'bold', s:FALSE)
+    call add(attrib_gui, 'bold')
+    call add(attrib_cterm, 'bold')
+  endif
+  if get(a:colors, 'underline', s:FALSE)
+    call add(attrib_gui, 'underline')
+    call add(attrib_cterm, 'underline')
+  endif
+  if get(a:colors, 'undercurl', s:FALSE)
+    call add(attrib_gui, 'undercurl')
+    call add(attrib_cterm, 'underline')
+  endif
+
+  let cmd = 'highlight ' . a:group
+  let cmd .= printf(' guifg=%s guibg=%s', fg.gui, bg.gui)
+  if attrib_gui != []
+    let cmd .= ' gui=' . join(attrib_gui, ',')
+  else
+    let cmd .= ' gui=NONE'
+  endif
+  if has_key(a:colors, 'sp')
+    let cmd .= printf(' guisp=%s', a:colors.sp.gui)
+  endif
+  let cmd .= printf(' ctermfg=%s ctermbg=%s', bg.cterm, bg.cterm)
+  if attrib_cterm != []
+    let cmd .= ' cterm=' . join(attrib_cterm, ',')
+  else
+    let cmd .= ' cterm=NONE'
+  endif
+  return cmd
+endfunction
+
+
 function! s:set(colorscheme, terminal_ansi_colors) abort
   highlight clear
   if exists('syntax_on')

@@ -141,17 +141,8 @@ endfunction
 
 
 function! s:hi_command(group, colors) abort
-  let cmd = 'highlight ' . a:group
-  if has_key(a:colors, 'fg')
-    let cmd .= printf(' guifg=%s ctermfg=%s', a:colors.fg.gui, a:colors.fg.cterm)
-  endif
-  if has_key(a:colors, 'bg')
-    let cmd .= printf(' guibg=%s ctermbg=%s', a:colors.bg.gui, a:colors.bg.cterm)
-  endif
-  if has_key(a:colors, 'sp')
-    let cmd .= printf(' guisp=%s', a:colors.sp.gui)
-  endif
-
+  let fg = get(a:colors, 'fg', {'gui': 'NONE', 'cterm': 'NONE'})
+  let bg = get(a:colors, 'bg', {'gui': 'NONE', 'cterm': 'NONE'})
   let attrib_gui = []
   let attrib_cterm = []
   if get(a:colors, 'bold', s:FALSE)
@@ -166,11 +157,22 @@ function! s:hi_command(group, colors) abort
     call add(attrib_gui, 'undercurl')
     call add(attrib_cterm, 'underline')
   endif
+
+  let cmd = 'highlight ' . a:group
+  let cmd .= printf(' guifg=%s guibg=%s', fg.gui, bg.gui)
   if attrib_gui != []
     let cmd .= ' gui=' . join(attrib_gui, ',')
+  else
+    let cmd .= ' gui=NONE'
   endif
+  if has_key(a:colors, 'sp')
+    let cmd .= printf(' guisp=%s', a:colors.sp.gui)
+  endif
+  let cmd .= printf(' ctermfg=%s ctermbg=%s', bg.cterm, bg.cterm)
   if attrib_cterm != []
     let cmd .= ' cterm=' . join(attrib_cterm, ',')
+  else
+    let cmd .= ' cterm=NONE'
   endif
   return cmd
 endfunction

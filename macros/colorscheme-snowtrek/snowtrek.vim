@@ -169,7 +169,7 @@ function! s:hi_command(group, colors) abort
   if has_key(a:colors, 'sp')
     let cmd .= printf(' guisp=%s', a:colors.sp.gui)
   endif
-  let cmd .= printf(' ctermfg=%s ctermbg=%s', bg.cterm, bg.cterm)
+  let cmd .= printf(' ctermfg=%s ctermbg=%s', fg.cterm, bg.cterm)
   if attrib_cterm != []
     let cmd .= ' cterm=' . join(attrib_cterm, ',')
   else

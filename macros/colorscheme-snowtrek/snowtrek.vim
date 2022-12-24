@@ -246,7 +246,7 @@ let s:SEPARATOR = has('win32') && !&shellslash ? '\' : '/'
 let s:THISFILE = fnamemodify(expand('<sfile>'), ':p')
 let s:MACRODIR = fnamemodify(s:THISFILE, ':h')
 let s:COLORSDIR = fnamemodify(s:THISFILE, ':h:h:h') . s:SEPARATOR . 'colors'
-function! ColorschemeSnowtrekGenerate() abort
+function! ColorschemeGenerate() abort
   let headerfile = join([s:MACRODIR, 'header.vim'], s:SEPARATOR)
   let lines = readfile(headerfile)
 

@@ -33,6 +33,7 @@ hi Identifier guifg=#89ac08 guibg=NONE gui=NONE ctermfg=106 ctermbg=NONE cterm=N
 hi Ignore guifg=#e9dfd7 guibg=NONE gui=NONE ctermfg=253 ctermbg=NONE cterm=NONE
 hi IncSearch guifg=NONE guibg=#fce4c4 gui=NONE ctermfg=NONE ctermbg=223 cterm=NONE
 hi LineNr guifg=#879da9 guibg=#ebebf5 gui=NONE ctermfg=246 ctermbg=254 cterm=NONE
+hi LspReference guifg=NONE guibg=#e2e5f9 gui=NONE ctermfg=NONE ctermbg=189 cterm=NONE
 hi MatchParen guifg=NONE guibg=NONE gui=bold,underline ctermfg=NONE ctermbg=NONE cterm=bold,underline
 hi ModeMsg guifg=#879da9 guibg=NONE gui=bold ctermfg=246 ctermbg=NONE cterm=bold
 hi MoreMsg guifg=#2053b4 guibg=NONE gui=bold ctermfg=19 ctermbg=NONE cterm=bold

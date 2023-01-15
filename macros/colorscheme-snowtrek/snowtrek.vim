@@ -33,7 +33,7 @@ function! s:light() abort
   let sandwichadd    = {'gui': '#cff7cf', 'cterm': '194'}
   let sandwichdelete = {'gui': '#fbd5d5', 'cterm': '230'}
   let sandwichchange = {'gui': '#f5f5c9', 'cterm': '225'}
-
+  let lspreference   = {'gui': '#e2e5f9', 'cterm': '189'}
 
   let colorscheme = {}
 
@@ -119,6 +119,7 @@ function! s:light() abort
   let colorscheme.uniteStatusSourceCandidates = {'fg': cyan, 'bg': statusline}
   let colorscheme.uniteStatusMessage          = {'fg': gray1, 'bg': statusline}
   let colorscheme.uniteStatusLineNR           = {'fg': green, 'bg': statusline}
+  let colorscheme.LspReference = {'bg': lspreference}
 
   "*** Language specific tweaks ***"
   let colorscheme.helpVim = colorscheme.Statement

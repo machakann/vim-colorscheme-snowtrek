@@ -34,11 +34,6 @@ function! s:light() abort
   let sandwichdelete = {'gui': '#fbd5d5', 'cterm': '230'}
   let sandwichchange = {'gui': '#f5f5c9', 'cterm': '225'}
 
-  let none         = {'gui': 'NONE',      'cterm': 'NONE'}
-  let bold         = {'gui': 'bold',      'cterm': 'bold'}
-  let underline    = {'gui': 'underline', 'cterm': 'underline'}
-  let undercurl    = {'gui': 'undercurl', 'cterm': 'undercurl'}
-  let boldunder    = {'gui': 'bold,underline', 'cterm': 'bold,underline'}
 
   let colorscheme = {}
 

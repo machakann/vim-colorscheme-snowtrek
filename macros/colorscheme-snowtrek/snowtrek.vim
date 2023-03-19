@@ -12,13 +12,13 @@ function! s:light() abort
   let gray1        = {'gui': '#3b3341', 'cterm': '238'}
   let gray2        = {'gui': '#879da9', 'cterm': '246'}
   let gray3        = {'gui': '#dbdbe5', 'cterm': '252'}
-  let gray4        = {'gui': '#ebebf5', 'cterm': '254'}
+  let gray4        = {'gui': '#eeeef6', 'cterm': '254'}
   let green        = {'gui': '#008700', 'cterm': '28'}
   let brown        = {'gui': '#814d25', 'cterm': '95'}
   let yellow       = {'gui': '#c29a16', 'cterm': '136'}
   let blue         = {'gui': '#2053b4', 'cterm': '19'}
   let cyan         = {'gui': '#54acd0', 'cterm': '37'}
-  let orange       = {'gui': '#ce711d', 'cterm': '166'}
+  let orange       = {'gui': '#e38017', 'cterm': '166'}
   let red          = {'gui': '#cd0000', 'cterm': '124'}
   let lightgreen   = {'gui': '#89ac08', 'cterm': '106'}
   let lightbrown   = {'gui': '#e9dfd7', 'cterm': '253'}
@@ -120,6 +120,11 @@ function! s:light() abort
   let colorscheme.uniteStatusMessage          = {'fg': gray1, 'bg': statusline}
   let colorscheme.uniteStatusLineNR           = {'fg': green, 'bg': statusline}
   let colorscheme.LspReference = {'bg': lspreference}
+  let colorscheme.LspErrorText = {'fg': red, 'bg': gray4}
+  let colorscheme.LspWarningText = {'fg': orange, 'bg': gray4}
+  let colorscheme.LspInformationText = {'fg': gray2, 'bg': gray4}
+  let colorscheme.LspHintText = {'fg': gray2, 'bg': gray4}
+  let colorscheme.LspCodeActionText = {'fg': gray2, 'bg': gray4}
 
   "*** Language specific tweaks ***"
   let colorscheme.helpVim = colorscheme.Statement
